@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pearson International A-Level IT Unit 1: Ultimate Refresher</title>
+<style>
+    :root {
+        color-scheme: light;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #2a3b51;
+        background: #f0f4fb;
+        --accent: #1f4db0;
+        --accent-soft: #dce8ff;
+        --surface: rgba(255, 255, 255, 0.96);
+        --surface-strong: #ffffff;
+        --muted: #5a6d85;
+        --shadow: 0 24px 60px rgba(15, 28, 60, 0.12);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at top, rgba(31, 77, 176, 0.15), transparent 25%),
+                    linear-gradient(180deg, #eaf1fc 0%, #f5f8fd 100%);
+        color: var(--muted);
+        overflow-x: hidden;
+        line-height: 1.65;
+        padding: 30px 0;
+        scroll-snap-type: y proximity;
+    }
+
+    .slide {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto 40px;
+        padding: 44px 48px;
+        background: var(--surface);
+        border-radius: 28px;
+        border: 1px solid rgba(31, 77, 176, 0.08);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        position: relative;
+        overflow: hidden;
+        scroll-snap-align: start;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .slide:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 32px 80px rgba(15, 28, 60, 0.16);
+    }
+
+    .slide:nth-child(even) {
+        background: #fbfdff;
+    }
+
+    .title-slide {
+        position: relative;
+        background: linear-gradient(135deg, #1b4ea0, #0f84d8);
+        color: #fff;
+        text-align: center;
+        padding: 72px 48px;
+        border: none;
+        min-height: 72vh;
+        display: grid;
+        place-items: center;
+        gap: 20px;
+        overflow: visible;
+    }
+
+    .title-logo {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: 150px;
+        height: auto;
+        z-index: 2;
+        box-shadow: 0 30px 60px rgba(9, 33, 68, 0.24);
+        border-radius: 22px;
+        background: rgba(255,255,255,0.82);
+        padding: 8px;
+        backdrop-filter: blur(10px);
+        pointer-events: none;
+    }
+
+    .title-slide::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 14% 18%, rgba(255,255,255,0.18), transparent 18%),
+                    radial-gradient(circle at 82% 24%, rgba(255,255,255,0.14), transparent 12%),
+                    radial-gradient(circle at 50% 86%, rgba(255,255,255,0.12), transparent 14%);
+        pointer-events: none;
+    }
+
+    .title-slide > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .title-slide h1 {
+        margin: 0;
+        font-size: clamp(3rem, 5vw, 5rem);
+        letter-spacing: -0.06em;
+        line-height: 1.02;
+        text-shadow: 0 18px 40px rgba(7, 46, 96, 0.18);
+    }
+
+    .title-slide h2 {
+        margin: 0;
+        font-size: clamp(1.5rem, 2.2vw, 2.4rem);
+        opacity: 0.95;
+        color: rgba(175, 3, 3, 0.94);
+    }
+
+    .title-slide p {
+        margin: 0;
+        color: rgba(255,255,255,0.82);
+        max-width: 900px;
+    }
+
+    .title-slide p strong {
+        color: #eef5ff;
+    }
+
+    .title-slide p em {
+        opacity: 0.9;
+        color: #d8e8ff;
+    }
+
+    .title-slide .slide-num {
+        color: rgba(255,255,255,0.77);
+    }
+
+    h1 {
+        color: var(--accent);
+        font-size: clamp(2rem, 2.4vw, 2.8rem);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    h2 {
+        color: #172a4b;
+        font-size: clamp(1.4rem, 1.9vw, 2rem);
+        margin: 0;
+        border-bottom: 3px solid var(--accent);
+        padding-bottom: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    p {
+        margin: 0;
+        color: #3d4f6d;
+    }
+
+    ul {
+        font-size: 1.05rem;
+        margin: 0;
+        padding-left: 1.4rem;
+        line-height: 1.8;
+        color: #3b4f70;
+    }
+
+    li {
+        margin-bottom: 0.75rem;
+    }
+
+    li::marker {
+        color: var(--accent);
+    }
+
+    .cmd {
+        color: #a82739;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: rgba(242, 97, 109, 0.14);
+        padding: 3px 8px;
+        border-radius: 6px;
+        border: 1px solid rgba(242, 97, 109, 0.22);
+        font-size: 0.92rem;
+    }
+
+    .topic-badge {
+        position: absolute;
+        top: 28px;
+        right: 34px;
+        background: rgba(31, 77, 176, 0.14);
+        color: #10326f;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        backdrop-filter: blur(10px);
+    }
+
+    .slide-num {
+        position: absolute;
+        bottom: 24px;
+        right: 34px;
+        color: #7a8cac;
+        font-weight: 700;
+        font-size: 0.5rem;
+    }
+
+    .answer-box,
+    .q-box {
+        padding: 20px 22px;
+        border-radius: 18px;
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .answer-box {
+        background: #ebf7f2;
+        border-left: 5px solid #1fa983;
+        color: #2c4e42;
+    }
+
+    .q-box {
+        background: #eef6ff;
+        border-left: 5px solid #2869c5;
+        color: #1d3f66;
+        font-weight: 600;
+    }
+
+    .code {
+        font-family: 'Courier New', Courier, monospace;
+        background: #f4f7fb;
+        padding: 0.25rem 0.65rem;
+        border-radius: 8px;
+        border: 1px solid rgba(31, 77, 176, 0.12);
+        color: #b53f43;
+        font-weight: 700;
+        white-space: pre-wrap;
+    }
+
+    .mark {
+        color: #c17f16;
+        font-weight: 800;
+        float: right;
+    }
+
+    .exam-tip {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        background: linear-gradient(135deg, rgba(255, 250, 230, 0.95), rgba(255, 244, 227, 0.95));
+        border: 1px solid rgba(241, 196, 15, 0.25);
+        padding: 16px 18px;
+        margin-top: 20px;
+        border-radius: 18px;
+        font-weight: 600;
+        color: #6b5315;
+    }
+
+    .ascii-art {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace;
+        background: #0e1b35;
+        color: #e6f0ff;
+        padding: 18px;
+        border-radius: 18px;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.35;
+        font-size: 0.96rem;
+        margin: 18px 0;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 20px 0;
+        }
+
+        .slide {
+            padding: 28px 22px;
+            margin-bottom: 28px;
+        }
+
+        .topic-badge,
+        .slide-num {
+            right: 22px;
+        }
+
+        .title-slide {
+            padding: 48px 24px;
+        }
+    }
+</style>
+</head>
+<body>
+    <img class="title-logo" src="logo.png" alt="Logo">
+
+<!-- Slide 1 -->
+<div class="slide title-slide">
+    <h1>🚀</h1>
+    <h2>Unit 1: Hardware, Software, Networks & Systems</h2>
+   
+    <div class="slide-num">Slide 1</div>
+</div>
+
+<!-- TOPIC 1: HARDWARE AND SOFTWARE (Slides 2-21) -->
+<!-- Slide 2 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>📱 1.1.1 Features of Digital Devices</h2>
+    <ul>
+        <li><strong>Portability:</strong> Ease of moving a device (Tablets > Desktop PCs).</li>
+        <li><strong>Performance:</strong> CPU speed, cores, and multitasking ability.</li>
+        <li><strong>Storage:</strong> Capacity to hold data persistently (e.g., 512GB SSD).</li>
+        <li><strong>User Interface:</strong> How the user interacts (Touchscreen vs Command Line).</li>
+        <li><strong>Connectivity:</strong> Wired/wireless links (USB-C, HDMI, Wi-Fi).</li>
+        <li><strong>Energy Consumption:</strong> Battery life / wattage requirements.</li>
+        <li><strong>Expansion Capability:</strong> Adding new components (PCIe slots).</li>
+        <li><strong>Security Features:</strong> Biometrics, TPM chips.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> When evaluating a device, always link its features to the user's specific context (e.g., a traveling salesperson needs high portability and long battery life).</div>
+    <div class="slide-num">Slide 2</div>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>💻 1.1.1 Contemporary Digital Devices</h2>
+    <ul>
+        <li><strong>Computers:</strong> Desktops, Tablets, Smart TVs, Consoles, Single-board computers (Raspberry Pi), Supercomputers.</li>
+        <li><strong>Input Peripherals:</strong> Keyboards, microphones, scanners, biometric scanners, barcode readers.</li>
+        <li><strong>Output Peripherals:</strong> Monitors, speakers, printers.</li>
+        <li><strong>I/O Peripherals:</strong> Touchscreens, chip and pin devices.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Use subject-specific terminology. Don't just say "scanner"; specify "biometric scanner" if referring to security, or "barcode reader" for retail.</div>
+    <div class="slide-num">Slide 3</div>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>💾 1.1.1 Storage Devices</h2>
+    <ul>
+        <li><strong>Magnetic:</strong> HDDs, magnetic tape. <em>Pros:</em> Cheap per GB. <em>Cons:</em> Moving parts, fragile.</li>
+        <li><strong>Solid State:</strong> SSDs, USB flash, SD cards. <em>Pros:</em> Fast, durable. <em>Cons:</em> Expensive per GB.</li>
+        <li><strong>Optical:</strong> CD, DVD. <em>Pros:</em> Cheap distribution. <em>Cons:</em> Low capacity.</li>
+        <li><strong>NAS (Network Attached Storage):</strong> Dedicated file storage accessed over a local network.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> The 2024 Examiner Report highlighted that students frequently missed NAS. NAS is perfect for small offices needing central shared storage without a full server.</div>
+    <div class="slide-num">Slide 4</div>
+</div>
+
+<!-- Slide 5 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>📡 1.1.2 Technologies Used by Devices</h2>
+    <ul>
+        <li><strong>GPS:</strong> Satellite-based location tracking (navigation apps).</li>
+        <li><strong>RFID & NFC:</strong> RFID for inventory tracking; NFC for contactless payments (close proximity).</li>
+        <li><strong>Biometrics:</strong> Fingerprint/facial recognition for secure authentication.</li>
+        <li><strong>QR Codes:</strong> Matrix barcodes for quick website links or tickets.</li>
+        <li><strong>Sensors:</strong> Detect environment changes (accelerometers, light sensors).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Don't confuse NFC and RFID. NFC is a subset of RFID specifically designed for secure, very short-range (few cm) communication like Apple Pay.</div>
+    <div class="slide-num">Slide 5</div>
+</div>
+
+<!-- Slide 6 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>🔄 1.1.3 Technological Convergence</h2>
+    <ul>
+        <li><strong>Concept:</strong> Multiple separate technologies combining into a single multipurpose device.</li>
+        <li><strong>Example:</strong> A smartphone converges a telephone, digital camera, GPS navigator, and portable music player.</li>
+        <li><strong>Impact:</strong> Reduces the need to carry multiple devices, lowers overall cost, but drains battery faster.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> If asked for a drawback of convergence, mention "single point of failure" - if you drop your smartphone, you lose your camera, phone, and wallet all at once.</div>
+    <div class="slide-num">Slide 6</div>
+</div>
+
+<!-- Slide 7 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>⚙️ 1.1.4 Embedded Systems</h2>
+    <ul>
+        <li><strong>Concept:</strong> A computer system with a dedicated function within a larger mechanical/electrical system.</li>
+        <li><strong>Features:</strong> Low power consumption, small size, rugged operating ranges, low cost per unit.</li>
+        <li><strong>Examples:</strong> Washing machine microcontrollers, engine management systems in cars, microwave timers.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Embedded systems usually run a single program continuously and cannot be easily upgraded by the end user like a general-purpose PC.</div>
+    <div class="slide-num">Slide 7</div>
+</div>
+
+<!-- Slide 8 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>🔌 1.1.5 Firmware</h2>
+    <ul>
+        <li><strong>Concept:</strong> Software programmed permanently into a hardware device, providing low-level control for its specific hardware.</li>
+        <li><strong>Storage:</strong> Stored in Non-Volatile Memory (ROM or Flash Memory) so it is not lost when power is removed.</li>
+        <li><strong>Example:</strong> A PC's BIOS/UEFI, or the software inside a TV remote control.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Firmware acts as the crucial bridge between the physical hardware and the operating system. Without it, the OS wouldn't know how to talk to the motherboard.</div>
+    <div class="slide-num">Slide 8</div>
+</div>
+
+<!-- Slide 9 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>📈 1.1.6 Performance Assessment Factors</h2>
+    <ul>
+        <li><strong>Speed:</strong> CPU clock speed (GHz) determines instructions processed per second.</li>
+        <li><strong>Capacity:</strong> RAM allows more apps open simultaneously; Storage holds more files.</li>
+        <li><strong>Bandwidth:</strong> Maximum rate of data transfer across a network connection.</li>
+        <li><strong>Power Efficiency:</strong> Crucial for mobile devices to extend battery life, and data centres to reduce cooling costs.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> When discussing network performance, use "Bandwidth" instead of "Speed". The Examiner Report noted students often lose marks by just saying "speed".</div>
+    <div class="slide-num">Slide 9</div>
+</div>
+
+<!-- Slide 10 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>⏱️ 1.1.7 Data File Size & Transmission Time</h2>
+    <ul>
+        <li><strong>Formula:</strong> <code>Time (seconds) = File Size (bits) / Transmission Speed (bits per second)</code></li>
+        <li><strong>Crucial Step:</strong> Always convert to matching units! Speeds are usually in bits (Mbps), file sizes in bytes (MB).</li>
+        <li><strong>Conversion:</strong> 1 Byte = 8 bits.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Show all your working out! If you make a math error at the end but showed the correct conversion to bits, you will still pick up method marks.</div>
+    <div class="slide-num">Slide 10</div>
+</div>
+
+<!-- Slide 11 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>🔢 1.1.8 Binary & Denary (IEC Standards)</h2>
+    <ul>
+        <li><strong>Units:</strong> Bit (1/0), Nibble (4 bits), Byte (8 bits).</li>
+        <li><strong>IEC Base-2 prefixes:</strong> 
+            <ul>
+                <li>KiB (Kibibyte) = 1024 Bytes</li>
+                <li>MiB (Mebibyte) = 1024 KiB</li>
+                <li>GiB (Gibibyte) = 1024 MiB</li>
+            </ul>
+        </li>
+        <li><strong>Conversion:</strong> 1011 = (1×8) + (0×4) + (1×2) + (1×1) = 11 in Denary.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> IEC standards strictly use 1024 (Base-2), whereas standard SI prefixes (KB, MB) use 1000 (Base-10). Read the question carefully to see which is requested!</div>
+    <div class="slide-num">Slide 11</div>
+</div>
+
+<!-- Slide 12 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>🖥️ 1.2.1 Purpose of Software</h2>
+    <ul>
+        <li><strong>Systems Software:</strong> Manages computer hardware and provides a platform for apps to run. <br><em>Examples:</em> Operating Systems (Windows), Utilities (Antivirus, Disk Defrag), Drivers.</li>
+        <li><strong>Applications Software:</strong> Performs specific end-user tasks. <br><em>Examples:</em> Word processors, web browsers, video games.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> If asked to categorize software, ask yourself: "Does the computer need this to function, or does the user need this to do their work?"</div>
+    <div class="slide-num">Slide 12</div>
+</div>
+
+<!-- Slide 13 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>🛠️ 1.2.2 Operating System Management</h2>
+    <ul>
+        <li><strong>Device Management:</strong> Communicates with peripherals via device drivers.</li>
+        <li><strong>Process Management:</strong> Allocates CPU time to multitasking applications.</li>
+        <li><strong>User Management:</strong> Handles login credentials and profile settings.</li>
+        <li><strong>Security Management:</strong> Manages file permissions, firewalls, and encryption.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Process Management" is about scheduling CPU cycles. Don't confuse it with User Management (handling accounts).</div>
+    <div class="slide-num">Slide 13</div>
+</div>
+
+<!-- Slide 14 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>🔓 1.2.3 Software Sources & Copyright</h2>
+    <ul>
+        <li><strong>Open-Source:</strong> Source code is publicly available to view/edit. Usually free (e.g., Linux, Python).</li>
+        <li><strong>Proprietary:</strong> Source code is hidden; usually paid. Copyright strictly enforced (e.g., MS Office).</li>
+        <li><strong>Creative Commons:</strong> Allows creators to grant public permission to use their work under certain conditions (e.g., attribution required).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> 2024 Examiner Report explicitly states: Open-source vs Proprietary is about LICENSING, not about bugs. Both can have bugs or security issues. Industry giants maintain many open-source projects today.</div>
+    <div class="slide-num">Slide 14</div>
+</div>
+
+<!-- Slide 15 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>📜 1.2.4 Licensing Options</h2>
+    <ul>
+        <li><strong>Single User:</strong> License for one person/machine.</li>
+        <li><strong>Multiple User:</strong> Set number of users/machines (e.g., 5-device license).</li>
+        <li><strong>Institutional/Site:</strong> Covers an entire organisation.</li>
+        <li><strong>Fixed Term:</strong> Subscription based (e.g., 1 year).</li>
+        <li><strong>Indefinite:</strong> Pay once, own forever.</li>
+        <li><strong>Network:</strong> Installed on a server, accessed by connected clients.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Software as a Service (SaaS) relies on Fixed Term subscriptions. A school will likely prefer an Institutional Network license to save money.</div>
+    <div class="slide-num">Slide 15</div>
+</div>
+
+<!-- Slide 16 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1: Hardware & Software</div>
+    <h2>🔄 1.2.5 Software Updates Management</h2>
+    <ul>
+        <li><strong>Patch:</strong> Small fix for bugs or security flaws.</li>
+        <li><strong>Upgrade:</strong> Major new version with new features (e.g., Windows 10 -> 11).</li>
+        <li><strong>Automatic Updates:</strong> Keeps systems secure instantly, but can cause unexpected downtime or <em>compatibility issues</em> with legacy software.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Always mention "compatibility issues" when discussing the drawbacks of automatic updates for businesses. A new update might break custom company software!</div>
+    <div class="slide-num">Slide 16</div>
+</div>
+
+<!-- Slide 17 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1 Exam Q1</div>
+    <h2>📝 Exam Question 1</h2>
+    <div class="q-box">
+        <p><span class="cmd">Explain</span> one reason why a smartphone's firmware is stored in ROM rather than RAM. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>ROM is non-volatile memory, meaning it retains its data even when the device loses power (1). This ensures the smartphone's crucial boot instructions are not erased when the battery dies or the phone is turned off (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Notice the 2-mark structure. Statement (Non-volatile) + Linked Expansion (Instructions aren't erased on power loss).</div>
+    <div class="slide-num">Slide 17</div>
+</div>
+
+<!-- Slide 18 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1 Exam Q2</div>
+    <h2>📝 Exam Question 2</h2>
+    <div class="q-box">
+        <p><span class="cmd">Evaluate</span> the use of a Solid State Drive (SSD) compared to a Magnetic Hard Disk Drive (HDD) for a photographer who travels frequently. <span class="mark">[6 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p><strong>Advantages:</strong> SSDs have no moving parts, making them highly durable and resistant to physical shocks, which is vital for traveling. They also offer faster read/write speeds for transferring large high-res image files.<br>
+        <strong>Disadvantages:</strong> SSDs are significantly more expensive per GB than HDDs, making high-capacity storage costly for a photographer.<br>
+        <strong>Conclusion:</strong> The physical durability of an SSD outweighs the higher cost, as losing client photos due to a broken HDD during travel would be catastrophic to their business.</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> For "Evaluate" questions, you MUST provide advantages, disadvantages, AND a final justified conclusion to reach the top mark band.</div>
+    <div class="slide-num">Slide 18</div>
+</div>
+
+<!-- Slide 19 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1 Exam Q3</div>
+    <h2>📝 Exam Question 3</h2>
+    <div class="q-box">
+        <p>A file is 10 MiB in size. A network has a bandwidth of 5 Mbps. <br><span class="cmd">Calculate</span> the time it will take to transmit the file. Show your working. <span class="mark">[3 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>1. Convert MiB to Bytes: 10 * 1024 * 1024 = 10,485,760 Bytes (1)<br>
+        2. Convert to bits: 10,485,760 * 8 = 83,886,080 bits (1)<br>
+        3. Divide by speed: 83,886,080 / 5,000,000 (5 Mbps) = 16.78 seconds (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Watch the prefixes! "MiB" means multiply by 1024. "Mbps" (Mega bits per second) usually uses Base-10 (1,000,000) for network speeds.</div>
+    <div class="slide-num">Slide 19</div>
+</div>
+
+<!-- Slide 20 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1 Exam Q4</div>
+    <h2>📝 Exam Question 4</h2>
+    <div class="q-box">
+        <p><span class="cmd">Discuss</span> the benefits and drawbacks to a bookstore owner of using open-source stock control software rather than proprietary software. <span class="mark">[6 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p><strong>Benefits:</strong> Open-source software licenses are usually free, saving the bookstore money. The source code can be legally modified by a hired developer to perfectly fit the specific niche needs of the bookstore.<br>
+        <strong>Drawbacks:</strong> There is usually no official customer support helpline, meaning if the system crashes during busy hours, the owner relies on community forums. Modifying the software requires hiring an expensive programmer.<br>
+        <strong>Conclusion:</strong> Unless the owner has technical skills or specific needs, proprietary software is safer due to official support and easier setup.</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> From Do NOT say proprietary software has no bugs and open source is full of bugs. Focus on licensing, cost, modification, and support!</div>
+    <div class="slide-num">Slide 20</div>
+</div>
+
+<!-- Slide 21 -->
+<div class="slide">
+    <div class="topic-badge">Topic 1 Exam Q5</div>
+    <h2>📝 Exam Question 5</h2>
+    <div class="q-box">
+        <p><span class="cmd">Describe</span> the role of the operating system in process management. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>Process management involves the OS scheduling and allocating processor (CPU) time to concurrent applications (1) to ensure smooth multitasking occurs without the system freezing (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> "Describe" questions require you to state what is happening step-by-step or give characteristics. Statement + Development.</div>
+    <div class="slide-num">Slide 21</div>
+</div>
+
+<!-- TOPIC 2: NETWORKS (Slides 22-41) -->
+<!-- Slide 22 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🕸️ 2.1.1 Network Models</h2>
+    <ul>
+        <li><strong>Client-Server:</strong> Central server manages resources, security, and backups. Highly secure but expensive to set up.</li>
+        <li><strong>Peer-to-Peer (P2P):</strong> All PCs have equal status. Cheaper, but security/backups are left to individual users.</li>
+        <li><strong>Ad hoc networks:</strong> Temporary networks created directly between devices without a router (e.g., Apple AirDrop).</li>
+        <li><strong>Tethering:</strong> Sharing a mobile device's cellular data connection with other devices (acting as a hotspot).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> P2P is great for a small home network (sharing a printer), but Client-Server is essential for schools/businesses for central data security.</div>
+    <div class="slide-num">Slide 22</div>
+</div>
+
+<!-- Slide 23 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>📻 2.1.2 Network Communication Protocols</h2>
+    <ul>
+        <li><strong>Wi-Fi:</strong> Wireless LAN protocol using radio waves. High bandwidth, medium range.</li>
+        <li><strong>Bluetooth:</strong> Short-range wireless for peripherals (headphones, mice).</li>
+        <li><strong>ZigBee:</strong> Low-power, low-data rate wireless protocol used for smart home automation (IoT devices like smart bulbs).</li>
+        <li><strong>Cellular (3G/4G/5G):</strong> Wide Area Network over cell towers.</li>
+        <li><strong>Ethernet:</strong> Standard wired LAN protocol using copper cables.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> ZigBee is preferred over Wi-Fi for smart home sensors because it uses significantly less battery power and forms a mesh network.</div>
+    <div class="slide-num">Slide 23</div>
+</div>
+
+<!-- Slide 24 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>📞 2.1.3 Network Standards & Protocols</h2>
+    <ul>
+        <li><strong>TCP/IP:</strong> The foundational suite of rules for the Internet. TCP ensures reliable packet delivery; IP routes the packets.</li>
+        <li><strong>VoIP (Voice Over IP):</strong> Transmitting voice calls over internet broadband rather than analog phone lines (e.g., Skype, Teams).</li>
+        <li><strong>SIP (Session Initiation Protocol):</strong> Used to set up, maintain, and terminate VoIP calls.</li>
+        <li><strong>7-Layer OSI Model:</strong> Conceptual framework standardising network communication across different hardware manufacturers.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Know the difference: VoIP is the actual transmission of the voice data, while SIP is the protocol that "rings" the other person and establishes the connection.</div>
+    <div class="slide-num">Slide 24</div>
+</div>
+
+<!-- Slide 25 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🔌 2.2.1 Network Transmission Media (Wired)</h2>
+    <ul>
+        <li><strong>Copper (Twisted Pair):</strong> Common Ethernet cable. Cheap, flexible, but susceptible to electromagnetic interference (EMI).</li>
+        <li><strong>Fibre Optic:</strong> Uses pulses of light through glass. Extremely fast, very high bandwidth, long-distance, no EMI. Expensive and fragile.</li>
+        <li><strong>Powerline:</strong> Uses existing electrical wiring in a building to transmit data. Great for extending a network without drilling walls.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> If an exam scenario involves connecting two separate buildings on a campus, always recommend Fibre Optic for the "backbone" due to its speed and resistance to weather/EMI.</div>
+    <div class="slide-num">Slide 25</div>
+</div>
+
+<!-- Slide 26 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>📡 2.2.1 Network Transmission Media (Wireless)</h2>
+    <ul>
+        <li><strong>Radio:</strong> Covers Wi-Fi/Bluetooth. Passes through walls but prone to interference from other devices.</li>
+        <li><strong>Microwave:</strong> Point-to-point communication. Requires direct line-of-sight between dishes.</li>
+        <li><strong>Infrared (Light):</strong> Requires direct line-of-sight, cannot penetrate solid objects (e.g., TV remote).</li>
+        <li><strong>Satellite:</strong> Relays signals from space. Excellent for remote areas, but suffers from high latency (delay).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Don't confuse Microwave and Satellite. Microwave is terrestrial (tower to tower on Earth), Satellite bounces off orbit. Both require line-of-sight!</div>
+    <div class="slide-num">Slide 26</div>
+</div>
+
+<!-- Slide 27 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>📊 2.2.2 Network Metrics (Part 1)</h2>
+    <ul>
+        <li><strong>Bandwidth:</strong> Theoretical maximum data capacity of a network connection (the width of the pipe).</li>
+        <li><strong>Throughput:</strong> The actual, real-world rate of successful data delivery (always lower than bandwidth).</li>
+        <li><strong>Latency:</strong> The time delay for a data packet to travel from source to destination.</li>
+        <li><strong>Jitter:</strong> The variation in latency over time. Highly disruptive to real-time apps.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Students often use "Speed" incorrectly. Use "Bandwidth" for capacity, "Latency" for delay, and "Jitter" for variation in arrival times.</div>
+    <div class="slide-num">Slide 27</div>
+</div>
+
+<!-- Slide 28 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>📉 2.2.2 Network Metrics (Part 2)</h2>
+    <ul>
+        <li><strong>Error Rate:</strong> Measure of the number of bits that are transferred incorrectly (corrupted data).</li>
+        <li><strong>Packet Loss:</strong> Packets that completely fail to reach their destination. Causes buffering.</li>
+        <li><strong>Scalability:</strong> How easily the network can expand without performance drops.</li>
+        <li><strong>Availability:</strong> The percentage of time a network is operational (uptime).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Do not confuse "Error Rate" (corrupted bits arriving) with "Packet Loss" (data never arriving at all).</div>
+    <div class="slide-num">Slide 28</div>
+</div>
+
+<!-- Slide 29 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🖲️ 2.2.3 Network Components (Part 1)</h2>
+    <ul>
+        <li><strong>Switch:</strong> Connects devices on a LAN. Forwards data *only* to the specific MAC address intended (intelligent). Reduces collisions.</li>
+        <li><strong>Hub:</strong> Legacy device. Broadcasts data to all ports regardless of destination. High collision rate.</li>
+        <li><strong>Router:</strong> Connects different networks together (e.g., LAN to Internet) using IP addresses.</li>
+        <li><strong>Gateway:</strong> Connects two entirely different networks using different protocols (translates the data).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Switches use MAC addresses (Layer 2). Routers use IP addresses (Layer 3). Know the difference!</div>
+    <div class="slide-num">Slide 29</div>
+</div>
+
+<!-- Slide 30 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🔌 2.2.3 Network Components (Part 2)</h2>
+    <ul>
+        <li><strong>WAP (Wireless Access Point):</strong> Allows wireless devices to connect to a wired network via Wi-Fi.</li>
+        <li><strong>NIC (Network Interface Card):</strong> Internal hardware allowing a device to connect to a network. Contains the burned-in MAC address.</li>
+        <li><strong>Repeater:</strong> Boosts/regenerates a signal to extend its physical range.</li>
+        <li><strong>Server:</strong> High-performance PC providing network services (File, Print, Web) to clients.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> A standard home "Wi-Fi Router" is actually a Multi-function device: it contains a Router, a Switch, and a WAP all in one box!</div>
+    <div class="slide-num">Slide 30</div>
+</div>
+
+<!-- Slide 31 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>📐 2.2.4 Network Design (Drawing Diagrams)</h2>
+    <pre class="ascii-art">
+    [Internet]
+        | (Fibre)
+    [Router]
+        | (Ethernet)
+    [Switch] ------- [Server Room]
+        |
+    [WAP] ~~~(Wi-Fi)~~~ [Laptop]
+    </pre>
+    <ul>
+        <li>When designing/completing diagrams, ensure lines are clearly drawn between correct devices.</li>
+        <li>Always label the media/protocol (e.g., Ethernet, Wi-Fi, Fibre).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Many students lost marks for drawing connecting lines but failing to LABEL the communication protocol (e.g., writing "Wi-Fi" next to the line).</div>
+    <div class="slide-num">Slide 31</div>
+</div>
+
+<!-- Slide 32 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🌍 2.2.5 IP Addressing</h2>
+    <ul>
+        <li><strong>IPv4:</strong> 32-bit address (e.g., <code>192.168.1.1</code>). Running out of unique addresses globally.</li>
+        <li><strong>IPv6:</strong> 128-bit address. Solves address exhaustion.</li>
+        <li><strong>Static IP:</strong> Manually assigned, never changes. Essential for servers and printers so they can always be found.</li>
+        <li><strong>Dynamic IP:</strong> Temporarily assigned when a device connects. Good for mobile phones.</li>
+        <li><strong>DHCP:</strong> The server protocol that automatically hands out Dynamic IP addresses.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Logical (IP) addresses are used to route data across the internet. Physical (MAC) addresses route data locally within a LAN.</div>
+    <div class="slide-num">Slide 32</div>
+</div>
+
+<!-- Slide 33 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🛡️ 2.3.1 Network Security Issues</h2>
+    <ul>
+        <li><strong>Threats:</strong> Malware (Viruses, Trojans, Ransomware), Phishing, DoS/DDoS attacks, unauthorized access (hacking).</li>
+        <li><strong>Impacts:</strong> Data loss, financial theft, severe reputation damage, legal fines (GDPR).</li>
+        <li><strong>Open Networks:</strong> Public Wi-Fi transmits data unencrypted by default. Hackers can easily intercept data using "packet sniffers" (Man-in-the-Middle attack).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Never just say "hacking is bad". Specify *why*: "A data breach could result in heavy GDPR fines and loss of customer trust."</div>
+    <div class="slide-num">Slide 33</div>
+</div>
+
+<!-- Slide 34 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🧱 2.3.2 Securing Networks (Firewalls & Anti-malware)</h2>
+    <ul>
+        <li><strong>Firewall:</strong> Hardware/software that monitors incoming/outgoing traffic based on security rules. Blocks unauthorized access.</li>
+        <li><strong>Anti-malware:</strong> 
+            <ul>
+                <li><em>Signature-based:</em> Uses a database of known malware code. Must be updated daily.</li>
+                <li><em>Heuristic detection:</em> Monitors running processes for suspicious behavior (e.g., a program trying to encrypt all files). Catches new, unknown viruses.</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Students struggled to name "Heuristic detection". Use this exact term when asked how anti-malware catches brand-new viruses without a database!</div>
+    <div class="slide-num">Slide 34</div>
+</div>
+
+<!-- Slide 35 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>🔐 2.3.2 Securing Networks (Encryption Types)</h2>
+    <ul>
+        <li><strong>Symmetric Encryption:</strong> The sender and receiver use the SAME shared key to encrypt and decrypt the message. Fast, but hard to share the key securely.</li>
+        <li><strong>Asymmetric Encryption:</strong> Uses a mathematically linked pair of keys. The sender encrypts with a Public Key. The receiver decrypts with their Private Key. Highly secure.</li>
+        <li><strong>End-to-End Encryption:</strong> Ensures only the communicating users can read the messages (e.g., WhatsApp).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Learn these specific terms! Don't just guess "Client-Server" or "Public Encryption" when asked about encryption techniques.</div>
+    <div class="slide-num">Slide 35</div>
+</div>
+
+<!-- Slide 36 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2: Networks</div>
+    <h2>👤 2.3.2 Securing Networks (Authentication & Physical)</h2>
+    <ul>
+        <li><strong>Authentication:</strong> Verifying identity.
+            <ul>
+                <li><em>Passwords:</em> Knowledge factor (weakest if simple).</li>
+                <li><em>Two-Factor (2FA):</em> Password + SMS code / App.</li>
+                <li><em>Biometrics:</em> Physical traits (fingerprint, iris). Hardest to fake.</li>
+            </ul>
+        </li>
+        <li><strong>Access Rights:</strong> Restricting what users can see (e.g., Student vs Teacher folders).</li>
+        <li><strong>Physical Controls:</strong> Server room locks, CCTV, disabling unused Ethernet wall ports.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Biometrics are highly secure but raise privacy issues. Discuss how storing children's fingerprints in a school database could be a target for identity theft.</div>
+    <div class="slide-num">Slide 36</div>
+</div>
+
+<!-- Slide 37 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2 Exam Q1</div>
+    <h2>📝 Exam Question 1</h2>
+    <div class="q-box">
+        <p><span class="cmd">Explain</span> one reason why asymmetric encryption is considered more secure than symmetric encryption for sending data over the internet. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>Asymmetric encryption uses a public key to encrypt data and a separate private key to decrypt it (1). This is more secure because the decryption (private) key is never transmitted across the network, meaning hackers cannot intercept it to read the message (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Identify the feature (two different keys) + Explain why it helps (private key is never transmitted).</div>
+    <div class="slide-num">Slide 37</div>
+</div>
+
+<!-- Slide 38 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2 Exam Q2</div>
+    <div class="q-box">
+        <p>An accountant is resting in a local park. She has a laptop and a smartphone. She needs to store meeting notes from her laptop into the cloud. <br>
+        <span class="cmd">Describe</span> how she can use her devices to store her notes in the cloud. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>She can use her smartphone as a Wi-Fi hotspot / use tethering to connect her laptop to the internet via the phone's cellular data (1). Once connected, she can log into her cloud storage account on the laptop and upload the files (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Many students just described what cloud storage was. You must describe the PROCESS of connecting (Tethering/Hotspot) to get both marks!</div>
+    <div class="slide-num">Slide 38</div>
+</div>
+
+<!-- Slide 39 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2 Exam Q3</div>
+    <h2>📝 Exam Question 3</h2>
+    <div class="q-box">
+        <p><span class="cmd">Identify</span> the network metric described by: "The variation in times between packets arriving at the destination." <span class="mark">[1 mark]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>Jitter (1)</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Memorize the exact definitions from the specification. Jitter = variation in arrival time. Latency = delay.</div>
+    <div class="slide-num">Slide 39</div>
+</div>
+
+<!-- Slide 40 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2 Exam Q4</div>
+    <h2>📝 Exam Question 4</h2>
+    <div class="q-box">
+        <p><span class="cmd">Explain</span> one way heuristic anti-malware software identifies malicious software. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>Heuristic detection works by continuously monitoring running processes for suspicious behavior (1), such as a program attempting to rapidly encrypt system files or access unknown addresses, and flagging it as malware (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Do not confuse heuristic detection (behavior monitoring) with signature detection (database matching) or firewalls (checking network traffic).</div>
+    <div class="slide-num">Slide 40</div>
+</div>
+
+<!-- Slide 41 -->
+<div class="slide">
+    <div class="topic-badge">Topic 2 Exam Q5</div>
+    <h2>📝 Exam Question 5</h2>
+    <div class="q-box">
+        <p><span class="cmd">Evaluate</span> the use of a Peer-to-Peer (P2P) network over a Client-Server network for a small office with 5 employees. <span class="mark">[6 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p><strong>Advantages:</strong> A P2P network is significantly cheaper and easier to set up because it does not require purchasing a dedicated, expensive server. It also doesn't require hiring a specialist IT administrator. If one PC fails, the rest of the network can still function to share printers/files.<br>
+        <strong>Disadvantages:</strong> Security is very weak, as each of the 5 employees must manage their own passwords and file permissions. Furthermore, there is no central backup system; if an employee's hard drive fails, their local files are permanently lost.<br>
+        <strong>Conclusion:</strong> For a small office of only 5 people on a tight budget, P2P is adequate initially, but they must implement strict manual backup policies to prevent data loss.</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Always relate your points to the context given. Here, "5 employees" justifies the lower cost of P2P.</div>
+    <div class="slide-num">Slide 41</div>
+</div>
+
+<!-- TOPIC 3: THE ONLINE ENVIRONMENT (Slides 42-58) -->
+<!-- Slide 42 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>🌐 3.1.1 Internet Structure</h2>
+    <ul>
+        <li><strong>The Internet:</strong> The physical, global network of interconnected computer networks using TCP/IP.</li>
+        <li><strong>IP Addressing:</strong> Every device needs a unique IP (like a postal address) to send/receive data across this global network.</li>
+        <li><strong>DNS (Domain Name System):</strong> The internet's phonebook. Translates human-readable domain names (<code>www.pearson.com</code>) into computer-readable IP addresses (<code>192.168.1.1</code>).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> The Internet is the hardware (cables, routers). The World Wide Web is the software/service (webpages) that runs ON the internet.</div>
+    <div class="slide-num">Slide 42</div>
+</div>
+
+<!-- Slide 43 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>🕸️ 3.1.2 & 3.1.3 World Wide Web & Content Types</h2>
+    <ul>
+        <li><strong>Features:</strong> Uses HTTP/HTTPS protocols, accessed via browsers, relies on URLs and HTML.</li>
+        <li><strong>Static Web Pages:</strong> Written in plain HTML/CSS. Content looks exactly the same to every user. Fast to load, cheap to host. Good for a basic read-only contact page.</li>
+        <li><strong>Dynamic Web Pages:</strong> Content changes based on user interaction, time, or location by querying a database. Slower to load, requires backend servers (e.g., an Amazon shopping cart or Facebook feed).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> If an exam asks for a suitable webpage for an online store, ALWAYS choose dynamic, as the site must update stock levels and handle individual user carts.</div>
+    <div class="slide-num">Slide 43</div>
+</div>
+
+<!-- Slide 44 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>📜 3.1.4 Client-side Scripting</h2>
+    <ul>
+        <li><strong>Concept:</strong> Code (like JavaScript) runs locally inside the user's web browser, NOT on the web server.</li>
+        <li><strong>Role:</strong> Validates web forms (e.g., checking a password is 8 chars long before submitting), creates interactive UI elements (animations).</li>
+        <li><strong>Pros:</strong> Immediate feedback to the user, reduces processing load on the web server.</li>
+        <li><strong>Cons:</strong> Code is visible to the user (insecure); user can disable scripts in their browser.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Never use client-side scripting for security (like checking a password against a database). A smart user can bypass client-side code!</div>
+    <div class="slide-num">Slide 44</div>
+</div>
+
+<!-- Slide 45 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>⚙️ 3.1.5 Server-side Scripting</h2>
+    <ul>
+        <li><strong>Concept:</strong> Code (like PHP, Python) executed on the web server before the final HTML is sent to the user's browser.</li>
+        <li><strong>Role:</strong> Interacting with databases, processing secure logins, generating dynamic HTML pages based on user requests.</li>
+        <li><strong>Pros:</strong> Secure (user cannot see the source code), reliable (doesn't depend on user browser settings).</li>
+        <li><strong>Cons:</strong> Increases processing load on the server, requires an internet round-trip for every action.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Combining both is best: Client-side for fast UI validation, Server-side for secure database interaction.</div>
+    <div class="slide-num">Slide 45</div>
+</div>
+
+<!-- Slide 46 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>💼 3.2.1 Online Working</h2>
+    <ul>
+        <li><strong>Impact on Individuals:</strong> Better work-life balance, no commuting costs. However, can cause isolation and blurring of home/work boundaries.</li>
+        <li><strong>Impact on Organisations:</strong> Access to a global talent pool, reduced office overhead costs (rent/electricity). Harder to monitor staff productivity and maintain company culture.</li>
+        <li><strong>Potential:</strong> 24/7 global collaboration using cloud tools.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> When asked for two ways employees can collaborate online, don't just list product names (Zoom, Teams). State the *function*: "Video conferencing" and "Instant messaging".</div>
+    <div class="slide-num">Slide 46</div>
+</div>
+
+<!-- Slide 47 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>🔒 3.2.2 Online Security</h2>
+    <ul>
+        <li><strong>Risks to Personal Data:</strong> Identity theft, data breaches on third-party servers, phishing attacks to steal credentials.</li>
+        <li><strong>Methods of Protection:</strong> 
+            <ul>
+                <li>Use strong, unique passwords & password managers.</li>
+                <li>Enable Two-Factor Authentication (2FA).</li>
+                <li>Check for HTTPS (padlock icon) before entering sensitive data.</li>
+                <li>Adjust privacy settings on social media.</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> HTTPS encrypts data in transit, but it does NOT guarantee the website itself is not run by a scammer!</div>
+    <div class="slide-num">Slide 47</div>
+</div>
+
+<!-- Slide 48 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>👣 3.2.3 Digital Footprint</h2>
+    <ul>
+        <li><strong>Concept:</strong> The trail of data you leave behind on the internet.</li>
+        <li><strong>Active:</strong> Data you intentionally share (social media posts, uploaded photos, forum comments).</li>
+        <li><strong>Passive:</strong> Data collected without your explicit intervention (IP address logs, browsing history, tracking cookies).</li>
+        <li><strong>Impacts:</strong> Building a professional brand (positive) vs. Employers finding inappropriate old posts (negative).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Cookies" are the main mechanism for tracking a passive digital footprint across multiple websites.</div>
+    <div class="slide-num">Slide 48</div>
+</div>
+
+<!-- Slide 49 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>👥 3.3.1 & 3.3.2 Online Communities</h2>
+    <ul>
+        <li><strong>Social Purposes:</strong> Gaming clans, hobby forums. Combats loneliness.</li>
+        <li><strong>Professional Purposes:</strong> LinkedIn, StackOverflow. Rapid sharing of industry knowledge.</li>
+        <li><strong>Impacts on Work:</strong> 
+            <ul>
+                <li><em>Positive:</em> Can quickly ask global peers for help to solve complex work problems.</li>
+                <li><em>Negative:</em> Can be a major distraction during work hours, reducing overall productivity. Risk of cyberbullying.</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> When evaluating professional online communities during work time, focus on productivity, efficiency, and effectiveness.</div>
+    <div class="slide-num">Slide 49</div>
+</div>
+
+<!-- Slide 50 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>💰 3.3.3 Monetisation Opportunities</h2>
+    <ul>
+        <li><strong>Targeted Advertising:</strong> Using a user's digital footprint (cookies) to show highly relevant ads based on their browsing history.</li>
+        <li><strong>Pay-per-click (PPC):</strong> Advertisers pay the platform owner a fee *each time* a user actually clicks their ad.</li>
+        <li><strong>Selling Customer Data:</strong> Aggregating demographic data and selling it to data brokers.</li>
+        <li><strong>Paid Subscriptions:</strong> Paywalls for premium content.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> For PPC, explicitly state who pays whom. "The advertiser pays the website owner a fee when the user clicks the ad."</div>
+    <div class="slide-num">Slide 50</div>
+</div>
+
+<!-- Slide 51 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3: Online Environment</div>
+    <h2>☁️ 3.4.1 Cloud Storage & 3.4.2 Computing</h2>
+    <ul>
+        <li><strong>Cloud Storage:</strong> Storing data on remote third-party servers accessed via the internet.
+            <br><em>Pros:</em> Accessible from any device, off-site backup. <em>Cons:</em> Requires internet, reliance on third party.</li>
+        <li><strong>Cloud Computing (SaaS/IaaS):</strong> Using remote servers to process data or run applications, rather than local hardware.</li>
+        <li><strong>Impact:</strong> Shifts IT costs from buying expensive servers (Capital Expenditure) to renting compute power monthly (Operational Expenditure). Highly scalable.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Scalability" is the biggest benefit of the cloud. A business can instantly rent more server power on Black Friday without buying new physical hardware.</div>
+    <div class="slide-num">Slide 51</div>
+</div>
+
+<!-- Slide 52 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3 Exam Q1</div>
+    <h2>📝 Exam Question 1</h2>
+    <div class="q-box">
+        <p>A carpenter is a member of an online professional community. He sees a targeted advertisement for 50% off nails at a shop near his location.<br>
+        <span class="cmd">Describe</span> the process that delivers this targeted advertisement. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>When the carpenter searches for materials online, the site generates tracking cookies which are stored in his browser (1). An advertising agency uses algorithms to analyze these cookies and his IP address (location) to display the most relevant ad to him (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> "Cookies" was the most frequently awarded mark here. Algorithms analyzing user data is the second step.</div>
+    <div class="slide-num">Slide 52</div>
+</div>
+
+<!-- Slide 53 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3 Exam Q2</div>
+    <h2>📝 Exam Question 2</h2>
+    <div class="q-box">
+        <p><span class="cmd">Explain</span> one way pay-per-click advertising works as a form of monetisation. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>Each time a user clicks on the advertisement displayed on the screen (1), the owner of the website will receive a fee paid by the advertiser (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Do not confuse PPC with the rank ordering of search engine results. Just focus on the transaction: click = payment.</div>
+    <div class="slide-num">Slide 53</div>
+</div>
+
+<!-- Slide 54 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3 Exam Q3</div>
+    <h2>📝 Exam Question 3</h2>
+    <div class="q-box">
+        <p><span class="cmd">Explain</span> why a website uses both HTML and client-side scripting. <span class="mark">[4 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>HTML is required to define the basic structure and static content of the webpage (1), such as placing text, images, and layout blocks on the screen (1). Client-side scripting (like JavaScript) is used to add interactivity (1), such as validating a user's form input locally before sending it, which saves server processing time (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> HTML = Structure. CSS = Style. JavaScript = Behavior/Interactivity.</div>
+    <div class="slide-num">Slide 54</div>
+</div>
+
+<!-- Slide 55 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3 Exam Q4</div>
+    <h2>📝 Exam Question 4</h2>
+    <div class="q-box">
+        <p>Employees are encouraged to be members of professional online communities.<br>
+        <span class="cmd">Give</span> one positive and one negative impact of employees using online communities during work time. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p><strong>Positive:</strong> They can quickly ask peers queries related to their work to solve problems efficiently (1).<br>
+        <strong>Negative:</strong> They can easily become distracted by non-work posts and fail to perform their jobs efficiently (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Ensure your answers focus on work productivity, efficiency, and effectiveness. "Spending time with family" is not a valid answer for working hours.</div>
+    <div class="slide-num">Slide 55</div>
+</div>
+
+<!-- Slide 56 -->
+<div class="slide">
+    <div class="topic-badge">Topic 3 Exam Q5</div>
+    <h2>📝 Exam Question 5</h2>
+    <div class="q-box">
+        <p><span class="cmd">Evaluate</span> the decision of a small startup company to use Cloud Computing (IaaS) instead of purchasing their own internal servers. <span class="mark">[6 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p><strong>Pros:</strong> The startup avoids huge upfront capital costs (hardware), paying only for what they use monthly. Cloud services are highly scalable, meaning if the startup grows rapidly, they can instantly rent more server power. They don't need to hire specialized IT staff for hardware maintenance.<br>
+        <strong>Cons:</strong> In the long term, ongoing rental subscriptions can become more expensive than owning. If their internet connection drops, the entire business halts. <br>
+        <strong>Conclusion:</strong> For a startup with limited initial funds and unpredictable growth, cloud computing is the ideal solution due to its flexibility and low entry cost.</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Remember the keywords: Scalability, Upfront Cost (CAPEX), Operational Cost (OPEX), Reliance on Internet.</div>
+    <div class="slide-num">Slide 56</div>
+</div>
+
+
+<!-- TOPIC 4: IT SYSTEMS (Slides 57-72) -->
+<!-- Slide 57 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>⚙️ 4.1.1 IT Systems Concept</h2>
+    <ul>
+        <li>An IT system is a collection of components working together to process data into information.</li>
+        <li><strong>Hardware:</strong> Physical devices (servers, PCs, scanners).</li>
+        <li><strong>Software:</strong> OS and Applications (Databases, Web apps).</li>
+        <li><strong>Processes:</strong> The procedures/rules followed to input, process, and output data.</li>
+        <li><strong>People:</strong> Users who input data, admins who maintain the system, managers who use the output.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Never forget "People" as a component! A system is useless if the staff don't know how to use it or refuse to adopt it.</div>
+    <div class="slide-num">Slide 57</div>
+</div>
+
+<!-- Slide 58 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>🧩 4.1.2 Systems Decomposition</h2>
+    <ul>
+        <li><strong>Concept:</strong> Breaking a complex, large IT system down into smaller, manageable sub-systems.</li>
+        <li><strong>Why?</strong> Makes the system easier to design, build, test, and debug. Different developer teams can work on different sub-systems simultaneously.</li>
+        <li><em>Example:</em> An e-commerce system decomposed into -> Shopping Cart Subsystem, Payment Gateway, Inventory Management.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Think of decomposition like Lego. It's easier to build the wheels, then the chassis, then the roof, rather than trying to mold a whole car at once.</div>
+    <div class="slide-num">Slide 58</div>
+</div>
+
+<!-- Slide 59 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>🎯 4.1.4 Fitness for Purpose</h2>
+    <ul>
+        <li><strong>Concept:</strong> Does the designed IT system actually do what it was intended to do, efficiently and effectively?</li>
+        <li><strong>Measures of Fitness:</strong>
+            <ul>
+                <li>Does it meet all original customer requirements?</li>
+                <li>Is it reliable and bug-free?</li>
+                <li>Is the user interface accessible?</li>
+                <li>Is it cost-effective?</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Fitness for purpose criteria MUST be set out *before* undertaking a project, verified through testing *during* the project, to ensure the final product matches the initial requirements.</div>
+    <div class="slide-num">Slide 59</div>
+</div>
+
+<!-- Slide 60 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>📊 4.2.1 & 4.2.2 Dataflow Diagrams (DFDs)</h2>
+    <ul>
+        <li><strong>Concept:</strong> Visualizes how data moves through a system. Focuses purely on data, NOT control logic, decisions, or time.</li>
+        <li><strong>Symbols:</strong>
+            <ul>
+                <li><code>[Square]</code> External Entity: Source/destination of data (e.g., Customer).</li>
+                <li><code>(Circle/Rounded Box)</code> Process: Action performed on data. MUST have inputs and outputs.</li>
+                <li><code>Open Rectangle</code> Data Store: Where data is held at rest (Database).</li>
+                <li><code>--></code> Data Flow: Arrow showing direction. MUST be labelled.</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> When asked to complete a DFD, do NOT add new processes. Only add data stores and accurately labelled data flow arrows between existing elements!</div>
+    <div class="slide-num">Slide 60</div>
+</div>
+
+<!-- Slide 61 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>🔀 4.3.1 & 4.3.2 Flowcharts</h2>
+    <ul>
+        <li><strong>Concept:</strong> Shows the step-by-step sequence of operations or algorithms. Shows control flow (logic), unlike DFDs.</li>
+        <li><strong>Symbols:</strong>
+            <ul>
+                <li><code>(Oval)</code> Terminator: Start / End.</li>
+                <li><code>[Rectangle]</code> Process: Action/Calculation (e.g., Calculate total).</li>
+                <li><code>/Parallelogram/</code> Input/Output: Reading/Writing data (e.g., Display error).</li>
+                <li><code>&lt;Diamond&gt;</code> Decision: Yes/No branch (e.g., Is password correct?).</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Students are generally good at flowchart notation. Ensure every Diamond has TWO labelled exit arrows (Yes/No)!</div>
+    <div class="slide-num">Slide 61</div>
+</div>
+
+<!-- Slide 62 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>📈 4.4.1 Advantages of IT Systems</h2>
+    <ul>
+        <li><strong>For Individuals:</strong> Automation of tedious tasks, easy remote working capability, improved communication speed.</li>
+        <li><strong>For Organisations:</strong> 
+            <ul>
+                <li>Increased productivity/efficiency.</li>
+                <li>Data mining capabilities for strategic advantage.</li>
+                <li>Reduction in long-term staff wage costs (automation).</li>
+                <li>24/7 global market reach via e-commerce.</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Increased productivity" is the generic answer. Always specify *how* (e.g., by automating invoice generation, freeing staff for other tasks).</div>
+    <div class="slide-num">Slide 62</div>
+</div>
+
+<!-- Slide 63 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>📉 4.4.1 Disadvantages of IT Systems</h2>
+    <ul>
+        <li><strong>For Individuals:</strong> Job displacement due to automation, RSI/eye strain, blurring of work-life balance boundaries.</li>
+        <li><strong>For Organisations:</strong>
+            <ul>
+                <li>High initial setup and maintenance costs.</li>
+                <li>Vulnerability to cyber-attacks/data breaches.</li>
+                <li>Total system failure causes business paralysis (over-reliance).</li>
+                <li>Constant need for staff retraining as tech changes.</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Over-reliance" is a great critical point. If the supermarket checkout IT system crashes, the store literally cannot sell anything and must close.</div>
+    <div class="slide-num">Slide 63</div>
+</div>
+
+<!-- Slide 64 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4: IT Systems</div>
+    <h2>💻 4.4.2 Digital Devices in IT Systems</h2>
+    <ul>
+        <li>Systems combine contemporary devices to meet specific goals.</li>
+        <li><em>Example - Warehouse System:</em>
+            <ul>
+                <li><strong>Input:</strong> Rugged handheld barcode scanners used by forklift drivers.</li>
+                <li><strong>Processing:</strong> Central server querying stock levels.</li>
+                <li><strong>Storage:</strong> RAID NAS storing the inventory database securely.</li>
+                <li><strong>Output:</strong> Printers generating shipping labels.</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> When selecting hardware for a scenario, justify it based on the environment. Warehouse devices must be "rugged" to survive drops.</div>
+    <div class="slide-num">Slide 64</div>
+</div>
+
+<!-- Slide 65 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4 Exam Q1</div>
+    <h2>📝 Exam Question 1</h2>
+    <div class="q-box">
+        <p>The construction industry uses IT systems. All IT systems must be fit for purpose before they are released.<br>
+        <span class="cmd">Give</span> two measures of fitness for purpose of an IT system. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>1. The created product matches the specific requirements stated at the analysis stage (1).<br>
+        2. The software has been tested to ensure it is working as intended without bugs (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> "Customer satisfaction" or "easy to navigate" are too vague. Focus on matching predetermined requirements and thorough testing.</div>
+    <div class="slide-num">Slide 65</div>
+</div>
+
+<!-- Slide 66 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4 Exam Q2</div>
+    <h2>📝 Exam Question 2</h2>
+    <div class="q-box">
+        <p><span class="cmd">Describe</span> the difference between a Dataflow Diagram (DFD) and a Flowchart. <span class="mark">[4 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>A Dataflow Diagram shows the movement, transformation, and storage of data within a system (1), but does not show sequence, timing, or conditional logic (1). Conversely, a Flowchart shows the exact step-by-step sequence of operations (1) and uses decision diamonds to show conditional logic and loops (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> DFD = Data movement. Flowchart = Logic and Sequence.</div>
+    <div class="slide-num">Slide 66</div>
+</div>
+
+<!-- Slide 67 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4 Exam Q3</div>
+    <h2>📝 Exam Question 3</h2>
+    <div class="q-box">
+        <p><span class="cmd">Evaluate</span> the impact of implementing a fully automated IT system in a manufacturing warehouse. <span class="mark">[6 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p><strong>Advantages:</strong> Automation increases processing speed and operational efficiency. Robots and systems don't need breaks, allowing 24/7 operation. Over time, it saves the company money on wages and reduces human error in picking items.<br>
+        <strong>Disadvantages:</strong> Initial capital expenditure for hardware/software is extremely high. Human workers may be made redundant, causing ethical issues and poor local PR. The warehouse becomes completely reliant on the system; a server crash stops all work.<br>
+        <strong>Conclusion:</strong> While the social impact and setup costs are high, the long-term efficiency and cost-savings usually make automation essential for competitive manufacturing.</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Don't forget the ethical/social angle (redundancies) when discussing automation!</div>
+    <div class="slide-num">Slide 67</div>
+</div>
+
+<!-- Slide 68 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4 Exam Q4</div>
+    <h2>📝 Exam Question 4</h2>
+    <div class="q-box">
+        <p>An e-commerce company has a registration form. <span class="cmd">Draw</span> a flowchart to describe the process. <br>
+        Rules: Pressing cancel closes the form. Pressing submit validates the form. If email is already registered, show an error and let them try again. If valid, generate a unique number, display it, and end.</p>
+    </div>
+    <div class="answer-box">
+        <pre class="ascii-art">
+   (Start)
+      |
+ /Input form/
+      |
+ &lt;Cancel pressed?&gt;--Yes--> (End)
+      | No
+ &lt;Submit pressed?&gt;--No--> (Wait)
+      | Yes
+ &lt;Email in DB?&gt;--Yes--> /Show Error/ --> (Loop back to Input)
+      | No
+ [Generate ID]
+      |
+ /Display ID/
+      |
+    (End)
+        </pre>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Many students forgot the database check. You must show a decision diamond asking "Is email already in Database?" with a "Yes" arrow looping back.</div>
+    <div class="slide-num">Slide 68</div>
+</div>
+
+<!-- Slide 69 -->
+<div class="slide">
+    <div class="topic-badge">Topic 4 Exam Q5</div>
+    <h2>📝 Exam Question 5</h2>
+    <div class="q-box">
+        <p><span class="cmd">Discuss</span> why considering the 'people' component is vital when designing a new IT system for a hospital. <span class="mark">[4 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>If the end-users (nurses/doctors) are not considered, the system may be too complex, leading to user frustration and dangerous medical mistakes (1). Considering people ensures the user interface is accessible and fits their fast-paced workflow (1). Furthermore, ignoring staff needs can cause resistance to adopting the new system (1), wasting the financial investment if the system is ultimately rejected by the workforce (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Apply the generic concept (user frustration) to the specific scenario (dangerous medical mistakes) for top marks.</div>
+    <div class="slide-num">Slide 69</div>
+</div>
+
+
+<!-- TOPIC 5: DATA AND DATABASES (Slides 70-84) -->
+<!-- Slide 70 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>📊 5.1.1 Data vs Information</h2>
+    <ul>
+        <li><strong>Data:</strong> Raw, unprocessed facts, figures, and symbols with no context or meaning. <br><em>Example:</em> <code>10052024</code>, <code>45</code>.</li>
+        <li><strong>Information:</strong> Data that has been processed, structured, or given context to make it meaningful and useful for decision making. <br><em>Example:</em> <code>Date: 10/05/2024</code>, <code>45 units sold</code>.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> A classic 2-mark question. Data = raw/no context. Information = processed/meaningful.</div>
+    <div class="slide-num">Slide 70</div>
+</div>
+
+<!-- Slide 71 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>📁 5.1.2 Data Sources & Types</h2>
+    <ul>
+        <li><strong>Structured Data:</strong> Highly organised data that fits neatly into a predefined format, like rows and columns in a relational database (Customer Names, Ages, Postcodes). Easy to search and query via SQL.</li>
+        <li><strong>Unstructured Data:</strong> Data with no predefined format. Harder to search and analyze. (Videos, Audio files, Free-text emails, Social media posts).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Machine Learning/AI is increasingly used to extract meaningful information from massive amounts of unstructured data (like reading customer reviews to determine sentiment).</div>
+    <div class="slide-num">Slide 71</div>
+</div>
+
+<!-- Slide 72 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>🗄️ 5.2.1 Why Databases?</h2>
+    <ul>
+        <li>Spreadsheets are poor for huge datasets and complex relationships.</li>
+        <li><strong>Databases are used to:</strong>
+            <ul>
+                <li>Structure data to reduce <strong>redundancy</strong> (duplication).</li>
+                <li>Enforce <strong>data integrity</strong> (accuracy and consistency).</li>
+                <li>Allow multiple users to query and update data concurrently without conflicts.</li>
+                <li>Provide granular security (access rights).</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Redundancy" is the magic word. Typing a customer's address 50 times in a spreadsheet causes errors. A database stores it once in a Customer table.</div>
+    <div class="slide-num">Slide 72</div>
+</div>
+
+<!-- Slide 73 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>🔑 5.2.2 Relational Database Structure</h2>
+    <ul>
+        <li><strong>Tables (Entities):</strong> Hold data about one specific theme (e.g., Student Table).</li>
+        <li><strong>Records (Rows):</strong> All the data relating to a single instance (one student).</li>
+        <li><strong>Fields (Columns):</strong> A single piece of data (Date of Birth).</li>
+        <li><strong>Primary Key (PK):</strong> A unique identifier for EVERY record (e.g., StudentID).</li>
+        <li><strong>Foreign Key (FK):</strong> A field in one table that links to the Primary Key in another table, creating the relationship.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> A <strong>Composite Key</strong> is a primary key made of TWO OR MORE fields combined to create a unique identifier (e.g., Date + EmployeeID).</div>
+    <div class="slide-num">Slide 73</div>
+</div>
+
+<!-- Slide 74 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>🔗 5.2.3 Entities and Relationships</h2>
+    <ul>
+        <li><strong>One-to-One (1:1):</strong> Rare. E.g., One Country has One Capital City.</li>
+        <li><strong>One-to-Many (1:M):</strong> Most common. E.g., One Mother can have Many Children. One Customer places Many Orders.</li>
+        <li><strong>Many-to-Many (M:M):</strong> E.g., Many Students can take Many Subjects. Cannot be implemented directly in a relational DB. MUST be resolved using a junction/link table.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> ERD Notation (Crow's Foot): A straight line ending in a dash = 'One'. A line splitting into three prongs = 'Many'.</div>
+    <div class="slide-num">Slide 74</div>
+</div>
+
+<!-- Slide 75 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>💻 5.3.1 Structured Query Language (SQL)</h2>
+    <ul>
+        <li><strong>Purpose:</strong> The standard language used to interact with relational databases.</li>
+        <li><strong>Data Manipulation Language (DML):</strong> Used to add, modify, delete, and retrieve specific records (SELECT, INSERT, UPDATE).</li>
+        <li><strong>Data Definition Language (DDL):</strong> Used to build the database itself (CREATE TABLE, Define Data Types like VARCHAR, INT).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> SQL is universally understood by different database systems (MySQL, Oracle, SQL Server), making it a vital standard.</div>
+    <div class="slide-num">Slide 75</div>
+</div>
+
+<!-- Slide 76 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>📝 5.3.2 Basic SQL Commands</h2>
+    <ul>
+        <li><strong>SELECT:</strong> Queries data. <br><code class="code">SELECT * FROM Students WHERE Age > 16;</code></li>
+        <li><strong>INSERT:</strong> Adds records. <br><code class="code">INSERT INTO Students (Name) VALUES ('John');</code></li>
+        <li><strong>UPDATE:</strong> Modifies data. <br><code class="code">UPDATE Students SET Age = 17 WHERE Name = 'John';</code></li>
+        <li><strong>DELETE:</strong> Removes data. <br><code class="code">DELETE FROM Students WHERE Name = 'John';</code></li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> The asterisk <code>*</code> means "Select ALL fields". Don't forget the semicolon <code>;</code> at the end of statements!</div>
+    <div class="slide-num">Slide 76</div>
+</div>
+
+<!-- Slide 77 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>🔍 5.3.2 SQL Features (Wildcards & Aggregation)</h2>
+    <ul>
+        <li><strong>Wildcards:</strong> Used with <code>LIKE</code> for pattern matching. 
+            <br><code>%</code> represents zero or more characters (<code>LIKE 'A%'</code> finds all starting with A).</li>
+        <li><strong>Aggregate Functions:</strong> <code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>, <code>MIN()</code>, <code>MAX()</code>.</li>
+        <li><strong>ORDER BY:</strong> Sorts results alphabetically or numerically (ASC/DESC).</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Do NOT use <code>LIKE</code> when comparing dates or exact numbers. Use <code>>=</code> instead! E.g., <code>WHERE published >= "01/01/1965"</code>.</div>
+    <div class="slide-num">Slide 77</div>
+</div>
+
+<!-- Slide 78 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5: Data & Databases</div>
+    <h2>🔗 5.3.2 SQL Linking Tables</h2>
+    <ul>
+        <li><strong>INNER JOIN:</strong> Combines columns from two tables based on a related column (PK to FK). Returns rows where there is a match in BOTH tables.
+            <br><code class="code">SELECT Customers.Name, Orders.Date<br>FROM Customers<br>INNER JOIN Orders ON Customers.CustID = Orders.CustID;</code>
+        </li>
+        <li><strong>UNION:</strong> Combines the result sets of two SELECT statements into a single column vertically. Tables must have the same number of columns/data types.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> If asked to return a set of unique titles available in ONE OR BOTH tables, use <code>UNION</code>. <br><code>SELECT title FROM tbl_book UNION SELECT title FROM tbl_dvd;</code></div>
+    <div class="slide-num">Slide 78</div>
+</div>
+
+<!-- Slide 79 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5 Exam Q1</div>
+    <h2>📝 Exam Question 1</h2>
+    <div class="q-box">
+        <p>The empNum field must be 6 digits long. One possible value is <code>062833</code>.<br>
+        <span class="cmd">Explain</span> one reason the empNum field cannot be assigned a data type of integer. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>An integer data type cannot begin with a leading zero (1), because the system would drop the zero (saving it as 62833), changing the length and rendering the ID incorrect. It must be stored as a string/VARCHAR (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Stating "it can't be an integer" gets 0 marks because the question already tells you that! Explain *why* (leading zeros are dropped).</div>
+    <div class="slide-num">Slide 79</div>
+</div>
+
+<!-- Slide 80 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5 Exam Q2</div>
+    <h2>📝 Exam Question 2</h2>
+    <div class="q-box">
+        <p><span class="cmd">Write</span> an SQL statement that returns the total number of books published in 1965 or later. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p class="code">SELECT COUNT(*) <span style="float:right">(1)</span><br>
+        FROM tbl_book <br>
+        WHERE published >= "01/01/1965"; <span style="float:right">(1)</span></p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Many students used <code>LIKE "*1965*"</code>. This is incorrect for dates. Use <code>>=</code> and <code>COUNT()</code>.</div>
+    <div class="slide-num">Slide 80</div>
+</div>
+
+<!-- Slide 81 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5 Exam Q3</div>
+    <h2>📝 Exam Question 3</h2>
+    <div class="q-box">
+        <p><span class="cmd">Describe</span> the purpose of a primary key in a relational database. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>A primary key is used to uniquely identify every individual record within a database table (1), ensuring that duplicate records cannot exist and allowing relationships to be formed with foreign keys in other tables (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> "Uniquely identify" are the magic words for Primary Keys.</div>
+    <div class="slide-num">Slide 81</div>
+</div>
+
+<!-- Slide 82 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5 Exam Q4</div>
+    <h2>📝 Exam Question 4</h2>
+    <div class="q-box">
+        <p><span class="cmd">Construct</span> an SQL statement to list the 'Make' and 'Model' of all cars in a 'Vehicles' table where the 'Price' is less than 5000. Order the results from cheapest to most expensive. <span class="mark">[4 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p class="code">SELECT Make, Model <span style="float:right">(1)</span><br>
+        FROM Vehicles <span style="float:right">(1)</span><br>
+        WHERE Price < 5000 <span style="float:right">(1)</span><br>
+        ORDER BY Price ASC; <span style="float:right">(1)</span></p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Build SQL line by line. Get the SELECT and FROM right first, that's an easy 2 marks even if you mess up the WHERE clause!</div>
+    <div class="slide-num">Slide 82</div>
+</div>
+
+<!-- Slide 83 -->
+<div class="slide">
+    <div class="topic-badge">Topic 5 Exam Q5</div>
+    <h2>📝 Exam Question 5</h2>
+    <div class="q-box">
+        <p><span class="cmd">Discuss</span> why a school should use a relational database rather than a flat-file spreadsheet to store student and class data. <span class="mark">[4 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>A relational database avoids data duplication (redundancy) by storing a teacher's details once, rather than typing it next to every student (1), preventing update anomalies and inconsistencies (1). Databases also provide advanced security features like access rights, ensuring teachers only see their own students' data (1), whereas spreadsheets are often entirely unlocked to anyone who opens the file (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Redundancy, Data Integrity, and Access Rights are the holy trinity of Database advantages over spreadsheets.</div>
+    <div class="slide-num">Slide 83</div>
+</div>
+
+<!-- TOPIC 6: WIDER ISSUES (Slides 84-98) -->
+<!-- Slide 84 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6: Wider Issues</div>
+    <h2>🌍 6.1.1 Environmental Impact of IT Equipment</h2>
+    <ul>
+        <li><strong>Construction:</strong> Mining for rare earth metals (lithium, cobalt) causes deforestation and water pollution. Manufacturing processes consume massive amounts of energy and release CO2.</li>
+        <li><strong>Use:</strong> Data centres and devices consume vast amounts of electricity, often generated by fossil fuels, contributing to global warming.</li>
+        <li><strong>Disposal:</strong> E-waste shipped to developing nations. Toxic chemicals (lead, mercury) leak into the soil and waterways.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Read the question carefully! Do not discuss "disposal" (e-waste) if the question specifically asks about the impact of "constructing/building" digital devices.</div>
+    <div class="slide-num">Slide 84</div>
+</div>
+
+<!-- Slide 85 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6: Wider Issues</div>
+    <h2>🌱 6.1.2 Positive Environmental Impact</h2>
+    <ul>
+        <li><strong>Environmental Monitoring:</strong> Satellite sensors tracking deforestation, ocean temperatures, and illegal logging in real time.</li>
+        <li><strong>Smart Houses:</strong> Thermostats (e.g., Nest) that learn schedules and automatically turn off heating when empty, saving energy.</li>
+        <li><strong>Smart Cities:</strong> Traffic lights that adapt to flow to reduce idling car emissions; smart streetlights that dim when no one is present.</li>
+        <li><strong>Resource Efficiency:</strong> Video conferencing reduces airline travel (lowering carbon footprint). Paperless billing saves forests.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> IT isn't all bad for the environment! "Dematerialisation" (using digital MP3s instead of manufacturing plastic CDs) is a great positive point.</div>
+    <div class="slide-num">Slide 85</div>
+</div>
+
+<!-- Slide 86 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6: Wider Issues</div>
+    <h2>⚖️ 6.2.1 Legal Issues</h2>
+    <ul>
+        <li><strong>Data Protection (GDPR):</strong> Laws demanding companies keep user data secure, accurate, and delete it when no longer needed. Heavy fines for breaches.</li>
+        <li><strong>Copyright:</strong> Protects original creative works (software code, images). Illegal to pirate/download without permission.</li>
+        <li><strong>Computer Misuse:</strong> Criminalizes unauthorized access (hacking), creating malware, and unauthorized modification of data.</li>
+        <li><strong>Intellectual Property:</strong> Patents protecting technological inventions.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Data Protection protects *people's privacy*. Copyright/IP protects a *company's products/profits*. Know the difference!</div>
+    <div class="slide-num">Slide 86</div>
+</div>
+
+<!-- Slide 87 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6: Wider Issues</div>
+    <h2>🤔 6.2.2 Moral and Ethical Issues (Part 1)</h2>
+    <ul>
+        <li><strong>Privacy:</strong> Tech companies collecting vast amounts of data without clear consent. Is it ethical to track a user's location 24/7?</li>
+        <li><strong>Inclusion & Accessibility:</strong> Ensuring IT doesn't exclude the elderly, disabled, or economically disadvantaged (Digital Divide). E.g., providing screen reader support and alt-text.</li>
+        <li><strong>Civil Liberties:</strong> Balancing national security (government surveillance/breaking encryption) with a citizen's fundamental right to private correspondence.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Inclusion" means ensuring *everyone* has equal access to technology effectively, regardless of disability or status. It is NOT about "consent".</div>
+    <div class="slide-num">Slide 87</div>
+</div>
+
+<!-- Slide 88 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6: Wider Issues</div>
+    <h2>🏙️ 6.2.2 Moral/Ethical & 6.3.1 Society</h2>
+    <ul>
+        <li><strong>Freedom of Expression:</strong> Social media platforms dealing with censorship vs. allowing hate speech/misinformation.</li>
+        <li><strong>Ubiquitous Wireless Access:</strong> 'Always-on' internet connectivity everywhere (4G/5G/Public Wi-Fi). Drives smart cities and mobile remote working.</li>
+        <li><strong>Location Awareness:</strong> Apps providing services based on GPS (Uber, Google Maps). Great utility, but huge privacy implications if the database is hacked or sold.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> A "Smart City" relies entirely on Ubiquitous Wireless Access to allow thousands of IoT sensors to talk to the central server simultaneously.</div>
+    <div class="slide-num">Slide 88</div>
+</div>
+
+<!-- Slide 89 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6 Exam Q1</div>
+    <h2>📝 Exam Question 1</h2>
+    <div class="q-box">
+        <p>A local government agency collects and stores data about people.<br>
+        <span class="cmd">Explain</span> one moral/ethical reason people may be concerned that the agency collects data about them. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>People may have privacy concerns that their personal data will be sold or shared with third parties for advertising purposes without their explicit consent (1). Alternatively, if the agency does not store the data securely, there is a risk of data theft and misuse by hackers (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> "Hacking" alone isn't enough. You must link it to the agency's failure to store data securely, resulting in a privacy breach.</div>
+    <div class="slide-num">Slide 89</div>
+</div>
+
+<!-- Slide 90 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6 Exam Q2</div>
+    <h2>📝 Exam Question 2</h2>
+    <div class="q-box">
+        <p>A bookstore is located in a smart city.<br>
+        <span class="cmd">Explain</span> one benefit of a smart city to customers when shopping for books inside the bookstore. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>The smart city provides ubiquitous free Wi-Fi connections (1), allowing the customer to quickly scan a book's QR code or search online to read reviews and compare prices before buying it (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Keep your answers in the context of the question. Talk about finding book information, not general smart city traffic lights!</div>
+    <div class="slide-num">Slide 90</div>
+</div>
+
+<!-- Slide 91 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6 Exam Q3</div>
+    <h2>📝 Exam Question 3</h2>
+    <div class="q-box">
+        <p>A company is developing a digital learning device for a child.<br>
+        <span class="cmd">Explain</span> one negative environmental impact of <strong>constructing</strong> digital devices. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>Mining for raw metals such as copper and lithium needed for the circuit boards (1) results in the large-scale destruction of land, which negatively impacts local biodiversity and habitats (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Do NOT write about e-waste leaking battery acid in landfills here. The question specifically asked about *constructing*, not disposal!</div>
+    <div class="slide-num">Slide 91</div>
+</div>
+
+<!-- Slide 92 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6 Exam Q4</div>
+    <h2>📝 Exam Question 4</h2>
+    <div class="q-box">
+        <p><span class="cmd">Explain</span> one negative environmental impact of the <strong>disposal</strong> of digital devices. <span class="mark">[2 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer:</strong></p>
+        <p>Improper disposal leads to e-waste being dumped into landfills (1), where toxic chemicals like lead and battery acid eventually leak out and contaminate the soil and nearby waterways (1).</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> Now is the time to talk about landfills and toxic leaks! Always read the bold words in the exam question carefully.</div>
+    <div class="slide-num">Slide 92</div>
+</div>
+
+<!-- Slide 93 -->
+<div class="slide">
+    <div class="topic-badge">Topic 6 Exam Q5</div>
+    <h2>📝 Exam Question 5 (Essay)</h2>
+    <div class="q-box">
+        <p>A company is making a dedicated learning device for a child aged 3-5. <br><span class="cmd">Evaluate</span> the benefits and drawbacks of including biometrics, a touchscreen, and a large amount of secondary storage. <span class="mark">[11 marks]</span></p>
+    </div>
+    <div class="answer-box">
+        <p><strong>Model Answer Outline:</strong></p>
+        <p><strong>Biometrics:</strong> Benefit - High security, parents can lock the device so only the child can open it, no complex passwords for a 3-year-old to remember. Drawback - Privacy concerns storing a child's fingerprint; unnecessary cost for a simple toy.<br>
+        <strong>Touchscreen:</strong> Benefit - Highly intuitive for a 3-year-old lacking motor skills for a mouse. Drawback - Fragile, expensive to replace when dropped.<br>
+        <strong>Storage:</strong> Benefit - Can store many educational videos offline without needing Wi-Fi on car journeys. Drawback - Expensive SSDs raise the cost of the toy unnecessarily.<br>
+        <strong>Conclusion:</strong> A touchscreen is essential for accessibility for this age group, but biometrics and massive storage are unnecessary over-engineering that drive up the price of a child's toy.</p>
+    </div>
+    <div class="exam-tip">💡 <strong></strong> You don't need to address *every* bullet point with both a pro and a con. Focus on writing a balanced, contextualized essay with a strong conclusion.</div>
+    <div class="slide-num">Slide 93</div>
+</div>
+
+<!-- EXAM STRATEGY (Slides 94-100) -->
+<!-- Slide 94 -->
+<div class="slide">
+    <div class="topic-badge">Exam Strategy</div>
+    <h2>🧠 Command Words: The Basics</h2>
+    <ul>
+        <li><span class="cmd">Identify / State / Give:</span> Requires a brief, direct answer. Usually 1 mark. No explanation or linking needed. Just hit the keyword.</li>
+        <li><span class="cmd">Describe:</span> Paint a picture in words. Give characteristics/features of a system. Tell the examiner <em>what</em> it is or <em>how</em> a process works step-by-step.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> If a question asks you to "Describe the process...", list the steps in chronological order. 1 mark per correct step.</div>
+    <div class="slide-num">Slide 94</div>
+</div>
+
+<!-- Slide 95 -->
+<div class="slide">
+    <div class="topic-badge">Exam Strategy</div>
+    <h2>🗣️ Command Words: The Explain Question</h2>
+    <ul>
+        <li><span class="cmd">Explain:</span> Give a statement, then say <em>why</em> or <em>how</em>.</li>
+        <li><strong>The Golden Rule:</strong> You must provide a linked expansion. </li>
+        <li>Use connecting phrases: "Because...", "This means that...", "Which leads to...".</li>
+        <li>Usually 2-4 marks. 1 mark for the point, 1 mark for the expansion.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "Responses to a two-mark explain must be linked. Where responses gave two statements, they could only be awarded one mark."</div>
+    <div class="slide-num">Slide 95</div>
+</div>
+
+<!-- Slide 96 -->
+<div class="slide">
+    <div class="topic-badge">Exam Strategy</div>
+    <h2>⚖️ Command Words: The Essays</h2>
+    <ul>
+        <li><span class="cmd">Discuss:</span> Explore different aspects of an issue. Give reasons for and against. Look for nuances.</li>
+        <li><span class="cmd">Evaluate:</span> The highest mark questions (6 to 12 marks). Requires weighing up points. </li>
+        <li><strong>Structure:</strong> You MUST provide Advantages, Disadvantages, AND a justified Conclusion. Do not just sit on the fence; make a decision based on the scenario!</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> "The length of the essay is not necessarily related to the awarded mark... Long, rambling essays with vague info get no more marks than short, accurate ones."</div>
+    <div class="slide-num">Slide 96</div>
+</div>
+
+<!-- Slide 97 -->
+<div class="slide">
+    <div class="topic-badge">Exam Strategy</div>
+    <h2>📐 Command Words: Math & Diagrams</h2>
+    <ul>
+        <li><span class="cmd">Calculate:</span> Show your working out! Marks are awarded for the method (like converting Bytes to bits), even if your final calculator press was wrong.</li>
+        <li><span class="cmd">Construct / Complete:</span> Usually applied to SQL or Diagrams.
+            <ul>
+                <li>SQL: Get the basic syntax right (SELECT, FROM).</li>
+                <li>Diagrams: Read the bullet points carefully. If it says "label the line", you lose the mark if you draw the line but forget the label!</li>
+            </ul>
+        </li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Many students lost marks for omitting labels on connecting lines in network diagrams. Always double-check diagram requirements.</div>
+    <div class="slide-num">Slide 97</div>
+</div>
+
+<!-- Slide 98 -->
+<div class="slide">
+    <div class="topic-badge">Exam Strategy</div>
+    <h2>📝 General Advice from the Principal Examiner</h2>
+    <ul>
+        <li><strong>Use Subject-Specific Terminology:</strong> Don't say "speed"; say "bandwidth". Don't say "checking for viruses"; say "heuristic detection". Vague answers lose marks.</li>
+        <li><strong>Context is King:</strong> If the question is about a "small 5-person office", don't suggest they buy a $50,000 fibre-optic server backbone. Tailor your answers to the scenario provided.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Read the scenario at the top of the page twice before answering the questions below it. Every detail (age, budget, location) is a clue!</div>
+    <div class="slide-num">Slide 98</div>
+</div>
+
+<!-- Slide 99 -->
+<div class="slide">
+    <div class="topic-badge">Exam Strategy</div>
+    <h2>🕒 Time Management</h2>
+    <ul>
+        <li><strong>Duration:</strong> 2 hours (120 minutes).</li>
+        <li><strong>Marks:</strong> 80 marks.</li>
+        <li><strong>Pacing:</strong> Aim for roughly 1.5 minutes per mark.</li>
+        <li>If a question is worth 2 marks, spend 3 minutes on it. If an essay is worth 12 marks, spend 18 minutes planning and writing it.</li>
+        <li>Don't get stuck! If you don't know a 2-mark question, move on and come back later. Don't waste 10 minutes on it.</li>
+    </ul>
+    <div class="exam-tip">💡 <strong></strong> Leave 10 minutes at the end to proofread your essays and check your math calculations!</div>
+    <div class="slide-num">Slide 99</div>
+</div>
+
+<!-- Slide 100 -->
+<div class="slide title-slide">
+    <h1>🎉 End of Unit 1 Masterclass</h1>
+
+    <div class="slide-num">Slide 100</div>
+</div>
+
+</body>
+</html>
