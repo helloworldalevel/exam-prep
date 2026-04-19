@@ -33,11 +33,35 @@
             z-index: 100;
         }
         nav h2 { font-family: 'Fraunces', serif; font-size: 1.2rem; margin-bottom: 1rem; color: #1f2937; }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            margin-left: auto;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #2563eb;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+        
         .toc {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
             list-style: none;
+            transition: all 0.3s ease;
         }
         .toc li { }
         .toc a {
@@ -52,6 +76,48 @@
             border-radius: 2px;
         }
         .toc a:hover { background: #eff6ff; border-left-color: #1e40af; }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                position: relative;
+            }
+            
+            nav h2 {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .toc {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #f3f4f6;
+                border-bottom: 2px solid #e5e7eb;
+                padding: 1rem;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+            
+            .toc.active {
+                display: grid;
+            }
+            
+            .toc a {
+                border-left: none;
+                border-radius: 4px;
+                margin-bottom: 0.25rem;
+            }
+        }
         
         /* Main Container */
         .container {
@@ -202,8 +268,14 @@
 
 <!-- Navigation / Table of Contents -->
 <nav>
-    <h2>📋 Contents</h2>
-    <ul class="toc">
+    <h2>📋 Contents
+        <button class="hamburger" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </h2>
+    <ul class="toc" id="toc-menu">
         <li><a href="#q1">Q1: Local Government & Networks (14m)</a></li>
         <li><a href="#q2">Q2: Networks, Encryption & Connectivity (16m)</a></li>
         <li><a href="#q3">Q3: Databases, SQL & Software (18m)</a></li>
@@ -1647,7 +1719,17 @@ SELECT title FROM tbl_dvd;</code></pre>
     <p style="margin-top: 1rem; font-size: 0.8rem; color: #9ca3af;">Generated for study purposes. Always refer to the official mark scheme and exam board guidance.</p>
 </footer>
 
-</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger-menu');
+    const toc = document.getElementById('toc-menu');
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        toc.classList.toggle('active');
+    });
+});
+</script>
 
 </body>
 </html>
